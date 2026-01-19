@@ -17,22 +17,36 @@ function LoginPage({ onLogin }) {
         <div className="form-pattern" />
         
         <div className="login-form">
-          {/* Logo */}
+          {/* Logo - Using Image */}
           <div className="logo-container">
-            <div className="logo-mark">
-              <div className="logo-bars">
-                <div className="logo-bar" />
-                <div className="logo-bar" />
-                <div className="logo-bar" />
-              </div>
-              <h1 className="logo-text">RePrime</h1>
-            </div>
+            {/* 
+              OPTION 1: Use a logo image file
+              Upload your logo to the /public folder and reference it like this:
+            */}
+            <img 
+              src="/logo.png" 
+              alt="RePrime Group" 
+              style={{
+                maxWidth: '280px',
+                height: 'auto',
+                marginBottom: '24px'
+              }}
+            />
             
-            <div className="logo-group">
-              {['G', 'R', 'O', 'U', 'P'].map((letter, i) => (
-                <span key={i}>{letter}</span>
-              ))}
-            </div>
+            {/* 
+              OPTION 2: Use a hosted logo URL
+              If your logo is hosted somewhere, use the full URL:
+              
+              <img 
+                src="https://your-website.com/logo.png" 
+                alt="RePrime Group" 
+                style={{
+                  maxWidth: '280px',
+                  height: 'auto',
+                  marginBottom: '24px'
+                }}
+              />
+            */}
 
             <p className="portal-label">Investor Portal</p>
           </div>
