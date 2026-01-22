@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useAuth } from '../context/AuthContext'
+import { DASHBOARD_URL } from '../App'
 
-function Dashboard({ user, onLogout, dashboardUrl }) {
+function Dashboard() {
+  const { user, logout } = useAuth()
   const [countdown, setCountdown] = useState(3)
 
   useEffect(() => {
@@ -9,7 +12,7 @@ function Dashboard({ user, onLogout, dashboardUrl }) {
       setCountdown((prev) => {
         if (prev <= 1) {
           clearInterval(timer)
-          window.location.href = dashboardUrl
+          window.location.href = DASHBOARD_URL
           return 0
         }
         return prev - 1
@@ -17,10 +20,10 @@ function Dashboard({ user, onLogout, dashboardUrl }) {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [dashboardUrl])
+  }, [])
 
   const handleManualRedirect = () => {
-    window.location.href = dashboardUrl
+    window.location.href = DASHBOARD_URL
   }
 
   return (
@@ -35,7 +38,7 @@ function Dashboard({ user, onLogout, dashboardUrl }) {
           </div>
           <h1 className="logo-text">RePrime</h1>
         </div>
-        
+
         <div className="logo-group">
           {['G', 'R', 'O', 'U', 'P'].map((letter, i) => (
             <span key={i}>{letter}</span>
@@ -44,7 +47,7 @@ function Dashboard({ user, onLogout, dashboardUrl }) {
       </div>
 
       <div className="welcome-message">
-        <h1>Welcome, {user.user_metadata?.full_name || user.email}</h1>
+        <h1>Welcome, {user?.name || user?.email}</h1>
         <p>You have been authenticated successfully.</p>
       </div>
 
@@ -52,8 +55,8 @@ function Dashboard({ user, onLogout, dashboardUrl }) {
         Redirecting to your dashboard in {countdown} seconds...
       </p>
 
-      <a 
-        href={dashboardUrl} 
+      <a
+        href={DASHBOARD_URL}
         className="manual-redirect"
         onClick={(e) => {
           e.preventDefault()
@@ -63,7 +66,7 @@ function Dashboard({ user, onLogout, dashboardUrl }) {
         Go to Dashboard Now
       </a>
 
-      <button className="logout-btn" onClick={onLogout}>
+      <button className="logout-btn" onClick={logout}>
         Sign Out
       </button>
     </div>
