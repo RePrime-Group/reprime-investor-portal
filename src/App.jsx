@@ -6,12 +6,6 @@ import ProtectedRoute from './components/ProtectedRoute'
 import AdminRoute from './components/admin/AdminRoute'
 import AdminPortal from './components/admin/AdminPortal'
 
-// ============================================================
-// CONFIGURATION - EDIT THIS URL TO YOUR DASHBOARD
-// ============================================================
-export const DASHBOARD_URL = 'https://your-deals-dashboard.com'
-// ============================================================
-
 function App() {
   return (
     <AuthProvider>
